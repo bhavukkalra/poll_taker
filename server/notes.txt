@@ -1,0 +1,18 @@
+app.get('route_info', (handler_function))
+
+app.use((handler_function)) // whole block is a middleware
+
+info about CORS (Cross origin Resource Sharing) => to handle cross origin requests
+https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+
+npm dotenv => for hiding enviroment variables e.x API KEYS
+
+To use your own promise library(eg Bluebird with mongoose) use
+mongoose.Promises = Bluebird
+
+
+mongoose.SchemaType =>
+SchemaType doesn't actually create MongoDB ObjectIds, it is just a configuration for a path in a schema.
+
+i.e 
+mongoose.ObjectId !== mongoose.Types.ObjectId
