@@ -8,16 +8,25 @@ mongoose.set("debug", true);
 
 const URI = process.env.URI;
 
-const connectDB = () => {
-  mongoose
-    .connect(URI, {
+async function connectDB() {
+  try{
+    const connect = await mongoose.connect(URI, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
-    })
-    .then(() => console.log("DB Connected!"))
-    .catch((err) => {
-      console.log(`DB Connection Error: ${err.message}`);
     });
+    console.log('Connected')
+
+  } catch (error) {
+    console.log(`DB Connection Error: ${err.message}`)
+  }
 };
 
 module.exports = connectDB;
+
+// CRUX
+module.exports.User = require('./user');
+module.exports.Poll = require('./poll');
+
+// It allows us to use db variable in our application
+// ie const db = require('./models') as
+// db.User and db.Poll

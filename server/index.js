@@ -1,27 +1,28 @@
 require("dotenv").config();
+
 const express = require("express");
 const handle = require("./handlers");
-
 const connectDB = require("./models/index");
-
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
+
 const port = process.env.PORT;
 
 connectDB();
+
 // middle wares of bodyParser and cors
 app.use(cors());
 app.use(bodyParser.json());
 
-//NOTE app.get(route, (handler function))
+
 
 app.get("/", (req, res) => {
   // client ? expects json type response
   res.json({ hello: "world" });
 });
 
-// NOTE app.use((handler function))
+
 app.use(handle.notFound);
 
 app.use(handle.errors);
