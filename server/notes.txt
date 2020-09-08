@@ -16,3 +16,15 @@ SchemaType doesn't actually create MongoDB ObjectIds, it is just a configuration
 
 i.e 
 mongoose.ObjectId !== mongoose.Types.ObjectId
+
+
+module.exports.User = require('./user');
+module.exports.Poll = require('./poll');
+
+// It allows us to use db variable in our application
+// ie const db = require('./models') as
+// db.User and db.Poll instead of first importing individual schema
+// like const User = require('./models/user'); ex_usage = User.create()
+
+// but now we can use as db.User and db.Poll with single import
+// const db = require('./models)
