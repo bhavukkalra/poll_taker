@@ -28,3 +28,95 @@ module.exports.Poll = require('./poll');
 
 // but now we can use as db.User and db.Poll with single import
 // const db = require('./models)
+
+
+git reset HEAD~1 (--hard flag could be added)
+
+async await syntactic sugar
+
+
+-----------------------------------------------------------------------------------
+BEFORE STORING THE USERS ENCRYPTION IS DONE
+//here function() keyword must be used instead of arrow function
+// because of this keyword 
+
+REGULAR FUNCTIONS => this keyword represented the object that called the function, 
+which could be the window, the document, a button or whatever.
+
+() => this keyword always represents the object that (defined the arrow function)/(it sowner) i.e it
+WILL HAVE GLOBAL SCOPE
+
+IF want dynamic this -> use function() othe wise () =>
+
+REFERENCE = https://www.w3schools.com/js/js_arrow_function.asp#:~:text=In%20short%2C%20with%20arrow%20functions,that%20defined%20the%20arrow%20function.
+
+------------------------------------------------------------------------------------------
+
+FROM DOCS ---
+userSchema.pre('save', async function(next){
+
+}
+
+Middleware (also called pre and post hooks) are functions which are passed control during execution of asynchronous functions
+Mongoose has 4 types of middleware: document middleware, model middleware, aggregate middleware, and query middleware
+
+SAVE IS A DOCCUMENT Middleware -> where this referes to doccument
+Pre middleware functions are executed one after another, when each middleware calls next.
+
+NOTE -
+var schema = new Schema(..);
+schema.pre('save', function(next) {
+  if (foo()) {
+    console.log('calling next!');
+    // `return next();` will make sure the rest of this function doesn't run
+    /*return*/ next();
+  }
+  // Unless you comment out the `return` above, 'after next' will print
+  console.log('after next');
+});
+----------------------------------------------------------------------------------------------
+
+in handlers auth.js  => exports.login(req,res, next) 
+
+and in handlers/index.js => 
+
+module.exports = {
+  ...require('./auth')
+}
+
+as we are spreading it out(all handlers for auth route) and exporting each as module.exports
+
+--------------------------------------------------------------------------------------
+
+ ... rest and spread operator
+ https://dev.to/sagar/three-dots---in-javascript-26ci
+
+ -----------------------------------------------------------------------------------
+ EXPRESS.ROUTER
+
+ Use the express.Router class to create modular, mountable route handlers. A Router instance is a complete middleware and 
+ routing system; for this reason, it is often referred to as a “mini-app”.
+
+ -----------------------------------------------------------------------------------
+recommended
+FOR EXPRESS ROUTE SPECIFIC
+
+for - /login  OR /register POST routes
+
+bodyParser.urlencoded({ extended: true })
+-----------------------------------------------------------------------------------
+
+ONLY SEND the id and username as response not full user(with passwords)
+
+INBUILT express body-parser not working(task)
+
+handlers/auth.js
+
+const user = await db.User.create(req.body);
+
+// destructure the user
+const {id, username} = user;
+
+res.json({id, username});
+
+-----------------------------------------------------------------------------------

@@ -1,4 +1,5 @@
 
+
 notFound = (req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
@@ -21,7 +22,11 @@ errors = (err, req, res, next) => {
 
 module.exports = {
     notFound,
-    errors
+    errors,
+    ...require('./auth')
+//spreading individual handler inside auth.js 
+//and exporting it => to be used by main index.js
+
 }
 
 
