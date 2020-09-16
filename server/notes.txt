@@ -2,6 +2,30 @@ app.get('route_info', (handler_function))
 
 app.use((handler_function)) // whole block is a middleware
 
+-----------------------------------------------------------------------------------
+Middleware
+
+app.use
+route = /login
+Login - valid token or invalid token 
+
+
+route = /login
+Authenticate Login(middleware)  ====> PLACED BEFORE route and also called immediately after specified route is accessed 
+then remaining route ex (app.post('/login'), (req, res)) is executed
+
+THERE COULD ALSO BE COMMON MIDDLEWARES
+
+
+Admin Dashboard
+
+Middleware will first check if the user has a valid token (i.e coming from login page with correct user id and pass)
+only then will be allowed to see admin dashboard 
+if not redirect to login page
+
+-----------------------------------------------------------------------------------
+
+
 info about CORS (Cross origin Resource Sharing) => to handle cross origin requests
 https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
 
@@ -120,3 +144,15 @@ const {id, username} = user;
 res.json({id, username});
 
 -----------------------------------------------------------------------------------
+Status Codes
+
+500 -> Internal server is broken
+400 -> Something went wrong
+200 -> OK
+201 -> Something was created
+
+mongoose specific error code
+11000 => that field is already taken or in use(example creating a user with same name)
+
+
+

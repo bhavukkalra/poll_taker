@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
 
 connectDB();
 
@@ -34,5 +34,5 @@ app.use(handle.notFound);
 app.use(handle.errors);
 
 app.listen(port, () =>
-  console.log(`Server started at port ${3000} http://localhost:3000`)
+  console.log(`Server started at port ${port} http://localhost:${port}`)
 );

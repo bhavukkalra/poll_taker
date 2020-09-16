@@ -1,4 +1,8 @@
+const jwt = require('jsonwebtoken');
+
+require('dotenv').config({path: "../.env"});
 // handlers for /api/auth routes
+
 const db = require('../models')
 
 register = async (req,res,next) =>{
@@ -8,9 +12,14 @@ register = async (req,res,next) =>{
 
         // destructure the user
         const {id, username} = user;
+        const token = jwt.sign({id , username}, process.env.SECRET);
 
-        res.json({id, username});
+        res.status(201).json({id, username, token});
     } catch (error) {
+        if(error.code === 11000){
+            error.message = 'Sorry, That username is already taken.Please try another one.'
+        }
+
         next(error); 
     }
 };
@@ -25,9 +34,11 @@ login = async (req, res, next) => {
         const valid = await user.comparePassword(req.body.password);
 
         if(valid){
+            const token = jwt.sign({id, username}, process.env.SECRET);
             res.json({
                 id,
-                username
+                username,
+                token
             });
         }else{
             throw new Error('Invalid username/password');
@@ -35,6 +46,9 @@ login = async (req, res, next) => {
         
         
     } catch (error) {
+        // for security purposes always through a generic message at login
+        error.message = 'Invalid username/password'
+
         next(error); 
     }
 };
