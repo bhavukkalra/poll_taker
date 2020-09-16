@@ -154,5 +154,94 @@ Status Codes
 mongoose specific error code
 11000 => that field is already taken or in use(example creating a user with same name)
 
+-----------------------------------------------------------------------------------
+
+
+Authenticate => middleware(auth.js)
+
+jwt.verify(token, process.env.SECRET, (error, decoded) => {
+            if(error){
+                next(Error('Failed to Authorize Token'))
+
+            }else{
+                //add decoded field to req object if authorized/verified
+                
+                //sending the users data to the next function to be used
+                // only one middle ware for authorisation and authentication
+                // coukd be used to check if user is logged in 
+                // if we want to know the specific users who is logged in => done via decoded property of req
+                req.decoded = decoded;
+                next();
+            }
+        })
+    }else{
+        next(Error('No Token Provided'));
+    }
+
+
+-----------------------------------------------------------------------------------
+async function => try catch block
+
+
+-----------------------------------------------------------------------------------
+
+DIFFERENCE BETWEEN app.get('/') and router.get('/')
+https://stackoverflow.com/questions/28305120/differences-between-express-router-and-app-get
+
+router.get('/') => is its own mini app seperate from the main app
+Each file's router becomes a mini app, which has a very similar structure to the main app.
+
+
+If you have code (middleware) that pertains to all three routes, you can put it in the main app, 
+before the app.use(...) calls. If you have code (middleware) that pertains to just one of those routes, 
+you can put it in the file for that route only.
+
+
+
+-----------------------------------------------------------------------------------
+
+map() in js
+Ref = https://www.w3schools.com/jsref/jsref_map.asp
+
+The map() method creates a new array with the results of calling a function for every array element.
+
+The map() method calls the provided function once for each element in an array, in order.
+
+Note: map() does not execute the function for array elements without values.
+
+Note: this method does not change the original array.
+
+EXAMPLE - 
+Multiply all the values in array with 10:
+
+var numbers = [65, 44, 12, 4];
+var newarray = numbers.map(myFunction)
+
+function myFunction(num) {
+  return num * 10;
+}
+
+-----------------------------------------------------------------------------------
+handlers/poll.js => createPoll
+
+ poll object = {
+             question: (string),
+             options: 
+                      [ 
+                        {option: 'this is option 1', votes : 0}, 
+                        {option: 'this is option 2,', votes: 0}
+                      ] 
+                }
+        options: array of objects with properties option and  votes(defualt = 0)
+
+
+ EVERY MONGOOSE SCHEMA HAS ITS OWN UNIQUE ID => by default       
+
+-----------------------------------------------------------------------------------
+
+
+
+
+
 
 

@@ -23,11 +23,12 @@ errors = (err, req, res, next) => {
 module.exports = {
     notFound,
     errors,
-    ...require('./auth')
-//spreading individual handler inside auth.js 
-//and exporting it => to be used by main index.js
-
+    ...require('./auth'),
+    ...require('./poll')
 }
+
+//...require()spreading individual handler inside auth.js 
+//and exporting it => to be used by main index.js
 
 
 

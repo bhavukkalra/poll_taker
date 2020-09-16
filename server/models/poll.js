@@ -5,7 +5,7 @@ let Schema = mongoose.Schema;
 
 const optionSchema = new Schema({
     //option name
-    options: String,
+    option: String,
     votes: {
         type: Number,
         default: 0
