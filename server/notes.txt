@@ -238,6 +238,106 @@ handlers/poll.js => createPoll
  EVERY MONGOOSE SCHEMA HAS ITS OWN UNIQUE ID => by default       
 
 -----------------------------------------------------------------------------------
+TO USE THE MIDDLEWARE auth just add it before handle /routes/poll
+
+const auth = require('../middlewares/auth')
+
+router.route('/')
+.get(handle.showPolls) 
+.post(auth ,handle.createPoll) // here
+
+
+now the poll won't be created unless there is a valid token in the header
+
+
+-----------------------------------------------------------------------------------
+middlewares/auth.js
+authenticate = (req, res, next) => {}
+
+module.exports = {
+  authenticate
+}
+
+use via =>   
+const auth = require('../middlewares/auth')
+
+auth.authenticate
+
+
+IF defined as 
+module.exports = (req, res, next) => {}
+
+use dirctly as 
+auth   
+(i.e no auth.authenticate)
+
+-----------------------------------------------------------------------------------
+
+in req.headers WE GET username and id and secret encoded
+
+
+
+after we decode them we get object
+
+this object is stored in req.decoded
+{
+  username: _____,
+  id: _______,
+  iat: _______
+}
+
+
+-----------------------------------------------------------------------------------
+/handlers/poll => 
+after creating poll  poll owner set to user id
+poll id added to array of polls created by user
+
+
+PROPOSED WAY-
+res.status(201).json({
+            ...poll._doc,
+            user: user._id
+        });
+
+------------------------------------
+MY WAY
+
+        res.status(201).json({
+            voted: poll.voted,
+            created: poll.created,
+            _id: poll._id,
+            question: poll.question,
+            user: user._id,
+            options: poll.options,
+        }
+
+V IMP
+
+only certain things returned => example => only the id of the user who made the poll 
+NOT THE ENTIRE user object(inside poll) by doing
+res.status(201).json({
+  poll
+})       
+
+
+--------------------------------------------------------------------------------------------
+AFTER CREATING THE POLL => storing the entire user
+
+const poll = await db.Poll.create({
+            question,
+            user, 
+            options: options.map(function(option){
+                return {
+                    option: option,
+                    votes: 0
+                }
+            }
+        )
+        });
+
+but DUE TO OUR SCHEMA => i.e Store only object id => only object id(extracted from user is getting stored)        
+
+--------------------------------------------------------------------------------------------
 
 
 

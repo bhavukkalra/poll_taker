@@ -6,7 +6,7 @@ require('dotenv').config({path: "../.env"});
 const db = require('../models')
 
 register = async (req,res,next) =>{
-    console.log(req.body);
+    
     try {
         const user = await db.User.create(req.body);
 
