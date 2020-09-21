@@ -150,6 +150,7 @@ Status Codes
 400 -> Something went wrong
 200 -> OK
 201 -> Something was created
+202 -> the instruction was accepted by the server and the "resource was marked for deletion"
 
 mongoose specific error code
 11000 => that field is already taken or in use(example creating a user with same name)
@@ -336,6 +337,65 @@ const poll = await db.Poll.create({
         });
 
 but DUE TO OUR SCHEMA => i.e Store only object id => only object id(extracted from user is getting stored)        
+
+--------------------------------------------------------------------------------------------
+POPULATE 
+
+https://mongoosejs.com/docs/populate.html#population
+
+ Story Schema{
+    author: aithor._id
+  }
+
+
+Story.
+  findOne({ title: 'Casino Royale' }).
+  populate('author').
+  exec(function (err, story) {
+    if (err) return handleError(err);
+    console.log('The author is %s', story.author.name);
+    // prints "The author is Ian Fleming"
+  });
+
+  return the doccument of the author who has writte the story Casino Royale
+
+  NOTE -> IMP
+  Arrays of refs work the same way. Just call the populate method on the query and an array of documents 
+  will be returned in place of the original _ids.
+
+
+  OUR USECASE
+
+  user schema {
+    polls: ObjectId(ref Poll)
+  }
+
+  const user = await db.User.findById(id).populate('polls');
+
+  user.polls => return array of polls created by user
+
+  ---------------------------------------------------------------------
+
+  HANDLE 'ref' in mongo with populate() => REPLACES REFERENCED id in schema with doccument of that id
+
+
+  ---------------------------------------------------------------------
+
+  const poll = await db.Poll.findById(id).populate('user', ['username', 'id']);
+
+  poll schema{
+    user: ref to User poll
+  }
+
+  fills the user field of Poll(schema) with 'username' and 'id' only 
+
+  if we did this
+  const poll = await db.Poll.findById(id).populate('user');
+
+  user field will be populate with whole user docuument(including password) => security issue
+
+
+
 
 --------------------------------------------------------------------------------------------
 

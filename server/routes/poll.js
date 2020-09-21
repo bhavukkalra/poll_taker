@@ -15,5 +15,15 @@ router.route('/')
 .post(auth.authenticate,handle.createPoll) //createPoll will run only if authenticated
 
 
+router.get('/user', auth.authenticate, handle.userPolls) //user dashboard to show all the polls created by him
+
+
+//routes for voting on a specific poll or showing it
+router.route('/:id')
+.get(handle.getPoll)
+.post(auth.authenticate, handle.vote)
+.delete(auth.authenticate, handle.deletePoll)
+
+
 
 module.exports = router;
