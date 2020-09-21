@@ -400,6 +400,93 @@ Story.
 --------------------------------------------------------------------------------------------
 
 
+//hardest route to configure => as most confusing
+
+vote = async (req, res, next) => {
+    try {
+        const {id: pollId} = req.params;
+        const {id: userId} = req.decoded;
+        const {answer} = req.body;
+
+        if(answer){
+            const poll = await db.Poll.findById(pollId);
+
+            if(!poll) throw new Error("poll Not found");
+
+
+            //will store which option is voted
+            //function(option_doccuments_inside_poll) => traversing through all option Schema documents
+            //option_doccuments_inside_poll.option => accessing the option inside the particular doccument
+
+
+            //goal => returned array will have only one change from (options array inside Poll Schema)
+            //i.e number of votes will be increased by one from original one rest id, option(string) will be same for all
+            const vote = poll.options.map(function(option_doccuments_inside_poll) {
+                if(option_doccuments_inside_poll.option === answer){
+
+                    return{
+                        option: option_doccuments_inside_poll.option,
+                        _id: option_doccuments_inside_poll._id,
+                        votes: option_doccuments_inside_poll.votes + 1
+                    }
+
+                }else{
+                    //if not the option marked return the whole option_doccument as it is
+                    return option_doccuments_inside_poll;
+                }
+            })
+
+
+            //NOW THAT WE GOT WHICH OPTION IS BEING VOTED
+
+            //CHECK IF USER ALREADY VOTED
+            //filter returns only those elements int the array which satisfy the condition in the call back function
+            store_user_if_already_voted = poll.voted.filter(function(user) {
+                return user.toString() == userId
+            });
+
+            
+            //user has not already voted i.e its his first time
+            // => update details in schema
+            if(store_user_if_already_voted.length <= 0){
+
+                poll.voted.push(userId);
+                poll.options = vote;
+                //CRUX
+
+                await poll.save();
+
+                //to avoid request time out => we need to send a response
+                res.status(202).json(poll);
+
+            }else{
+                throw new Error("Already Voted");
+            }
+
+
+        }else{
+            throw new Error("No answer Provided");
+        }
+  
+    } catch (error) {
+        error.status = 400;
+        next(error);
+        
+    }
+
+}
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------
+
+
 
 
 
