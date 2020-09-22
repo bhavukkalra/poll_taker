@@ -1,0 +1,63 @@
+rm src/App.* 
+remove everything in src directory starting with App.
+
+mkdir src/components && touch src/components/App.jsx
+
+
+
+-------------------------------------------------------------------------------
+Failing to compile
+
+const App = () => {
+  <h1>App works </h1>
+};
+
+
+This Working 
+
+const App = () => <div> App Works </div>;
+
+
+-------------------------------------------------------------------------------
+
+Initially
+
+import ReactDOM from "react-dom";
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+
+
+Now 
+Destructure the render from react-dom => instead of calling the entire React-dom every time
+
+import {render} from "react-dom";
+
+render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+
+
+------------------------------------------------------------------------------------------
+
+
+"proxy": "http://localhost/4000" => in package.json
+
+any request will go to this url
+
+NOTE => we will need to start two servers at the same time and the command to run these servers reside
+in different directories namely "client" and "server"
+=> BachScript
+
+
+
+chmod +x start.sh => giving execute permissions to script
+
+

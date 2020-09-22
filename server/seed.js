@@ -56,6 +56,8 @@ const seed = async () => {
         poll.options = poll.options.map(option => ({ option, votes: 0 }));
         const data = await db.Poll.create(poll);
         const user = await db.User.findOne({ username: 'username' });
+
+        //will only store userId in poll doccument out of the whole user model
         data.user = user;
         user.polls.push(data._id);
         await user.save();
