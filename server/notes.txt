@@ -477,10 +477,13 @@ vote = async (req, res, next) => {
 }
 
 
+--------------------------------------------------------------------------------------------
 
 
+.map() => performs a set of actions on each element of array and return the results
 
-
+.fileter() => perform a set of actions on each element of array and return the 
+elements for the which the written condition is true
 
 
 

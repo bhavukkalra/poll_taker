@@ -44,6 +44,15 @@ const seed = async () => {
 
     await Promise.all(
       polls.map(async poll => {
+
+      //   to create a poll input must match with the schema of poll here poll.options is 
+      //   just array of strings while it must be array of optionsSchema
+      //   of format 
+      //  {
+      //     option: string,
+      //     votes : 0
+      //  }
+       
         poll.options = poll.options.map(option => ({ option, votes: 0 }));
         const data = await db.Poll.create(poll);
         const user = await db.User.findOne({ username: 'username' });

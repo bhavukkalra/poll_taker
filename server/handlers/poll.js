@@ -137,7 +137,7 @@ vote = async (req, res, next) => {
                 await poll.save();
 
                 //to avoid request time out => we need to send a response
-                res.status(202).json(poll);
+                res.status(200).json(poll);
 
             }else{
                 throw new Error("Already Voted");
