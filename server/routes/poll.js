@@ -11,8 +11,8 @@ const auth = require('../middlewares/auth');
 
 //get, post routes at api/polls
 router.route('/')
-.get(handle.showPolls) // show everything
-.post(auth.authenticate,handle.createPoll) //createPoll will run only if authenticated
+    .get(handle.showPolls) // show everything
+    .post(auth.authenticate, handle.createPoll) //createPoll will run only if authenticated
 
 
 router.get('/user', auth.authenticate, handle.userPolls) //user dashboard to show all the polls created by him
@@ -20,9 +20,9 @@ router.get('/user', auth.authenticate, handle.userPolls) //user dashboard to sho
 
 //routes for voting on a specific poll or showing it
 router.route('/:id')
-.get(handle.getPoll)
-.post(auth.authenticate, handle.vote)
-.delete(auth.authenticate, handle.deletePoll)
+    .get(handle.getPoll)
+    .post(auth.authenticate, handle.vote)
+    .delete(auth.authenticate, handle.deletePoll)
 
 
 

@@ -48,7 +48,7 @@ render(
 ------------------------------------------------------------------------------------------
 
 
-"proxy": "http://localhost/4000" => in package.json
+"proxy": "http://localhost/4000/api" => in package.json
 
 any request will go to this url
 
@@ -60,4 +60,51 @@ in different directories namely "client" and "server"
 
 chmod +x start.sh => giving execute permissions to script
 
+------------------------------------------------------------------------------------------
+/src/srvices/api.js
+// Shared logic that can be used in multiple components
+// similar to redux => as it is shared state
 
+axios for making HTTP requests to our server
+
+----------------------------------------------------------
+old way of importing
+const axios = require('axios');
+
+ES6 way
+import axios from 'axios';
+
+old way of exporting
+module.exports
+
+ES6 way
+
+export const fun = () => {
+
+}
+
+--------------------------------------------------------------------------------------------------------------------
+
+Default Exports: Default exports are useful to export only a single object, function, variable. 
+During the import, we can use any name to import.
+
+--------------------------------------------------------------------------------------------------------------------
+api.js
+(method, path, data)
+
+axios.method => can't be used as method will be passed as string 
+so => we use axios[method] (bracket notation) => means axios.method
+
+
+(`/${path}`, data); => only completing of the default path set in package.json
+
+
+data => for post request (if get request this parameter will be ignored)
+
+response held in response.data
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
