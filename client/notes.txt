@@ -103,8 +103,43 @@ data => for post request (if get request this parameter will be ignored)
 
 response held in response.data
 
+--------------------------------------------------------------------------------------------------------------------
+MUST INSTALL => "react-scripts": "^4.0.0", => REMOVES ALL VULNERABILITIES
 
+Redux => Docs
+
+The whole state of your app is stored in an object tree inside a single store. The only way to change the state tree is to emit an action, an object describing what happened. 
+To specify how the actions transform the state tree, you write pure reducers.
 
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+
+//const App = () => <div> App Works </div>; => functional component with no state
+
+class App extends React.Component{ => react component has acces to react state
+
+import { store } from "../store"; => if it is not a default export then we have to Destructure it
+
+return() => not return {}
+
+const setCurrent = (user) => (
+  //return this object 
+  {
+
+  }
+    
+)
+
+-------------------------------------------------------------------------------------------------------
+!!(something) instead of Boolean() function
+
+it converts a value (null, undefined, objects etc…) to a primitive Boolean value. 
+Similar to typecasting explicitly using Boolean(value) except this converts the value to a Bololean Object and is not a true boolean. 
+The double negation trick could be used to ensure that a return value is always boolean type in methods that returns a boolean value based on some condition.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+npm install jwt-decode => for decoding json web tokens

@@ -6,7 +6,6 @@ import axios from 'axios'
 
 
 
-
 const setToken = (token) => {
     if(token){
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -16,7 +15,7 @@ const setToken = (token) => {
 };
 
 
-
+// if not using proxy write full path(base = http://localhost:4000/api/auth/login)
 // @method : GET, POST etc
 //@path : 
 const call = async (method, path, data) => {
