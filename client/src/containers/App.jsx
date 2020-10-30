@@ -3,7 +3,8 @@ import decode from 'jwt-decode'
 import { Provider } from 'react-redux'
 import api from '../services/api'
 import { store } from "../store";
-import { addError, setCurrentUser, setToken } from "../store/actions";
+import { addError, setCurrentUser, setToken } from '../store/actions/index';
+import Auth from '../components/Auth';
 
 // user will stay logged in even if they exit the browser
 if(localStorage.jwtToken){
@@ -22,7 +23,7 @@ if(localStorage.jwtToken){
 const App = () => {
     return(
         <Provider store = {store}>
-        <div> App Works </div>;
+        <Auth/>
         </Provider>
     ) 
 }

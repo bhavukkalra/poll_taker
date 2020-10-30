@@ -5,19 +5,19 @@ import { SET_CURRENT_USER } from '../actionTypes';
 import api from '../../services/api'
 
 
-const setCurrentUser = (user) => ({
+export const setCurrentUser = (user) => ({
     type: SET_CURRENT_USER,
     user
 
 });
 
-const setToken = (token) => {
+export const setToken = (token) => {
     api.setToken(token);
 };
 
 
 
-const logout = () => {
+export const logout = () => {
     return dispatch => {
         localStorage.clear();
         api.setToken(null);
@@ -26,7 +26,7 @@ const logout = () => {
     }
 }
 
-const authUser = (path, data) => {
+export const authUser = (path, data) => {
     return async dispatch => {
         try {
             const {token, ...user} = await api.call('post', `auth/${path}`, data);
@@ -45,3 +45,4 @@ const authUser = (path, data) => {
         }
     }
 }
+
