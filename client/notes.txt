@@ -143,3 +143,10 @@ The double negation trick could be used to ensure that a return value is always 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 npm install jwt-decode => for decoding json web tokens
+
+<Fragment> instead of <div></div> => React.Fragment  ???
+
+constructor(props) => React component always takes in props which is send by the Parent component
+super(props) => to ing=herit all the methods from parent
+
+

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import {authUser, logout} from '../store/actions';
+
 
 
 
@@ -15,16 +17,15 @@ class Auth extends React.Component{
             password: ''
         };
 
-        //Handle Change gets bind with constructor *this and its properties
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        
 
     }
 
-    handleSubmit(e){
+    handleSubmit = (event) =>{
         const {username, password} = this.state;
-        e.preventDefault();
-        console.log(username, password);
+        event.preventDefault();
+        const {authType} = this.props;
+        this.props.authUser(authType || 'login', {username, password});
     }
 
 
@@ -32,10 +33,15 @@ class Auth extends React.Component{
     // could be avoided with the arrow function
 
     //input e @event
-    handleChange(e){
+    handleChange = (event) => {
         this.setState({
-            [e.target.name]: e.target.value
+            [event.target.name]: event.target.value
         })
+        console.log(typeof event.target.name)
+        //i.e
+        //username: ""
+        //password: ""
+        
 
 
     }
@@ -65,5 +71,9 @@ class Auth extends React.Component{
 }
 
 
-
-export default Auth;
+//mapping store to props
+//mapping dispatches(actions) to props
+export default connect(
+    () => ({}), 
+    {authUser, logout}
+)(Auth);

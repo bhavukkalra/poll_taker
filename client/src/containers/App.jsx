@@ -23,7 +23,7 @@ if(localStorage.jwtToken){
 const App = () => {
     return(
         <Provider store = {store}>
-        <Auth/>
+        <Auth authType = {'login'}/>
         </Provider>
     ) 
 }

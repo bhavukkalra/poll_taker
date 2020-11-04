@@ -6,7 +6,7 @@ const DEFAULT_STATE = {
 }
 
 
-
+//no named export of arrow function
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type){
         case SET_CURRENT_USER:

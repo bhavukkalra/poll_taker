@@ -1,5 +1,6 @@
 import {ADD_ERROR, REMOVE_ERROR} from '../actionTypes';
 
+//no named export export of arrow function
 export default (state = {message: null}, action) => {
     switch(action.types){
         case ADD_ERROR:
