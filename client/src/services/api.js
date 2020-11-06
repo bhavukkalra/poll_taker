@@ -19,7 +19,7 @@ const setToken = (token) => {
 // @method : GET, POST etc
 //@path : 
 const call = async (method, path, data) => {
-    const response = await axios[method](`/${path}`, data);
+    const response = await axios[method](`http://localhost:4000/api/${path}`, data);
     return response.data;
 };
 

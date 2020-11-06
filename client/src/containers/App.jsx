@@ -5,6 +5,7 @@ import api from '../services/api'
 import { store } from "../store";
 import { addError, setCurrentUser, setToken } from '../store/actions/index';
 import Auth from '../components/Auth';
+import ErrorMessage from '../components/ErrorMessage'
 
 // user will stay logged in even if they exit the browser
 if(localStorage.jwtToken){
@@ -23,7 +24,10 @@ if(localStorage.jwtToken){
 const App = () => {
     return(
         <Provider store = {store}>
-        <Auth authType = {'login'}/>
+        <div>
+            <Auth authType = {'login'}/>
+            <ErrorMessage/>
+        </div>
         </Provider>
     ) 
 }
