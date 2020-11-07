@@ -11,5 +11,3 @@ export default (state = {message: null}, action) => {
             return state;        
     }
 };
-
-

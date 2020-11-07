@@ -150,3 +150,7 @@ constructor(props) => React component always takes in props which is send by the
 super(props) => to ing=herit all the methods from parent
 
 
+
+------------------------------------------------------------------------------------------------------
+
+JSX must have a parent element <div></div>   or <Fragment> </Fragment>
