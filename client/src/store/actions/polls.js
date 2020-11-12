@@ -19,7 +19,7 @@ export const getPolls = () => {
     return async dispatch => {
         try {
             //shows all polls created by the user
-            const polls = await api.call('get', 'polls/user');
+            const polls = await api.call('get', 'polls');
             dispatch(setpolls(polls));
             dispatch(removeError()); 
         } catch (err) {
@@ -28,6 +28,18 @@ export const getPolls = () => {
         }
     }
 }
+export const getUserPolls = () => {
+    return async dispatch => {
+      try {
+        const polls = await api.call('get', 'polls/user');
+        dispatch(setpolls(polls));
+        dispatch(removeError());
+      } catch (err) {
+        const { error } = err.response.data;
+        dispatch(addError(error));
+      }
+    };
+  };
 
 export const createPoll = (data) => {
     return async dispatch => {
@@ -67,7 +79,6 @@ export const vote = (path, data) => {
             dispatch(setCurrentPoll(poll));
             dispatch(removeError()); 
 
-            
         } catch (err) {
             const error = err.response.data;
             dispatch(addError(error.message));

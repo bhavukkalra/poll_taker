@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 
 import error from './error';
 import  auth  from './auth';
-export polls from './polls';
+import {polls, currentPoll} from './polls';
 
 // Check Again
 export default combineReducers({
     auth,
-    error
+    error,
+    polls,
+    currentPoll
 });

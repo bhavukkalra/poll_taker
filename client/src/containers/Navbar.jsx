@@ -15,7 +15,8 @@ const Navbar = ({ auth, logout }) => (
                 <Link to = "login">login </Link>
             </li>
             <li>
-                <a onClick= {logout}>Logoutsadasdas</a>
+                {/* ()=> arrow function not used for onClick as logout came from store*/}
+                <a onClick= {logout}>Logout</a>
             </li>
 
         </ul>
@@ -25,4 +26,8 @@ const Navbar = ({ auth, logout }) => (
 )
 
 
-export default connect(store => ({auth: store.auth}))(Navbar);
+export default connect(store => ({
+    auth: store.auth,
+}),
+{ logout },
+)(Navbar);
