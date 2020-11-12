@@ -18,6 +18,9 @@ const Navbar = ({ auth, logout }) => (
                 {/* ()=> arrow function not used for onClick as logout came from store*/}
                 <a onClick= {logout}>Logout</a>
             </li>
+            <li>
+                <Link to = "/test">test </Link>
+            </li>
 
         </ul>
         {auth.isAuthenticated && (<p>Logged in as {auth.user.username}</p>)}

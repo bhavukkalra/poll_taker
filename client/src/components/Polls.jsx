@@ -30,6 +30,7 @@ class Polls extends Component{
 
 
     render(){
+        const { auth, getPolls, getUserPolls } = this.props;
         //return each question in polls enclosed in list tags
         // () => this.handleSelect() react ambiguity
         const polls = this.props.polls.map(poll => (
@@ -37,9 +38,18 @@ class Polls extends Component{
         ));
 
         return(
-        <Fragment>
-        <ul>{ polls }</ul>
-        </Fragment>
+            
+
+
+            <Fragment>
+            {auth.isAuthenticated && (
+                <div>
+                <button onClick = {getPolls}> All Polls</button>
+                <button onClick = {getUserPolls}> My Polls</button>
+                </div>
+            )}
+            <ul>{ polls }</ul>
+            </Fragment>
         )
     }
 };
