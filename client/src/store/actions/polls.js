@@ -23,8 +23,8 @@ export const getPolls = () => {
             dispatch(setpolls(polls));
             dispatch(removeError()); 
         } catch (err) {
-            const error = err.response.data;
-            dispatch(addError(error.message));
+            const { error } = err.response.data;
+            dispatch(addError(error));
         }
     }
 }
@@ -50,8 +50,8 @@ export const createPoll = (data) => {
             dispatch(removeError()); 
             
         } catch (err) {
-            const error = err.response.data;
-            dispatch(addError(error.message));
+            const { error } = err.response.data;
+            dispatch(addError(error));
         }
     }
 }
@@ -65,8 +65,8 @@ export const getCurrentPoll = (path) => {
             dispatch(removeError()); 
             
         } catch (err) {
-            const error = err.response.data;
-            dispatch(addError(error.message));
+            const { error } = err.response.data;
+            dispatch(addError(error));
             
         }
     }
@@ -80,9 +80,8 @@ export const vote = (path, data) => {
             dispatch(removeError()); 
 
         } catch (err) {
-            const error = err.response.data;
-            dispatch(addError(error.message));
-            
+            const { error } = err.response.data;
+            dispatch(addError(error));
         }
         
     }
