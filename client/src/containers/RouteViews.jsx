@@ -13,7 +13,6 @@ const RouteViews = ({auth}) => (
     <Switch>
     <Route exact path = '/'
     render = {() => <Homepage />} />
-
     <Route exact path= '/login' 
     render = {() => <AuthPage authType = 'login' isAuthenticated = {auth.isAuthenticated}/>} />
     <Route eaxct path= '/register' 

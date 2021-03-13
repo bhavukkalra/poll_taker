@@ -154,3 +154,9 @@ super(props) => to ing=herit all the methods from parent
 ------------------------------------------------------------------------------------------------------
 
 JSX must have a parent element <div></div>   or <Fragment> </Fragment>
+
+
+------------------------------------------------------------------------------------------------------
+
+React Extension => history object from => withRouter()
+State => contains match => contains params, path, url

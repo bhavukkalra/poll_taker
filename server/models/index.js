@@ -1,4 +1,4 @@
-require("dotenv").config({ path: ".." + "/.env" });
+const dotenv = require("dotenv").config({path: __dirname+  '/./../.env'});
 const mongoose = require("mongoose");
 
 //to use asynchronous javascript
@@ -18,7 +18,7 @@ async function connectDB() {
     console.log('Connected')
 
   } catch (error) {
-    console.log(`DB Connection Error: ${err.message}`)
+    console.log(`DB Connection Error: ${error.message}`)
   }
 };
 
